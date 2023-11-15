@@ -1,15 +1,12 @@
-// ignore_for_file: prefer_const_constructors, unnecessary_import, unused_local_variable
-
-import 'package:flappy_bird/Routes/app_routes.dart';
+import 'package:flappy_bird/Global/constant.dart';
+import 'package:flappy_bird/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'Layouts/Pages/page_start_screen.dart';
-import 'Resources/strings.dart';
+import 'layouts/Pages/page_start_screen.dart';
 
 void main() async {
   await Hive.initFlutter();
-  var box = await Hive.openBox('user');
   runApp(const MainApp());
 }
 
@@ -23,7 +20,7 @@ class MainApp extends StatelessWidget {
       DeviceOrientation.portraitDown,
     ]);
     return MaterialApp(
-      home: StartScreen(),
+      home: const StartScreen(),
       debugShowCheckedModeBanner: false,
       initialRoute: Str.home,
       onGenerateRoute: AppRoute().generateRoute,

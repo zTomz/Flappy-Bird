@@ -1,15 +1,14 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables, avoid_unnecessary_containers, avoid_print
 import 'dart:async';
-import 'package:flappy_bird/Layouts/Pages/page_start_screen.dart';
-import 'package:flappy_bird/Layouts/Widgets/widget_bird.dart';
-import 'package:flappy_bird/Layouts/Widgets/widget_barrier.dart';
-import 'package:flappy_bird/Layouts/Widgets/widget_cover.dart';
+import 'package:flappy_bird/layouts/Pages/page_start_screen.dart';
+import 'package:flappy_bird/layouts/Widgets/widget_bird.dart';
+import 'package:flappy_bird/layouts/Widgets/widget_barrier.dart';
+import 'package:flappy_bird/layouts/Widgets/widget_cover.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import '../../Database/database.dart';
 import '../../Global/constant.dart';
 import '../../Global/functions.dart';
-import '../../Resources/strings.dart';
 
 class GamePage extends StatefulWidget {
   GamePage({Key? key}) : super(key: key);
