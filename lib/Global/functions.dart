@@ -1,22 +1,8 @@
-import 'package:audioplayers/audioplayers.dart';
+import 'package:flappy_bird/global/constant.dart';
+import 'package:flappy_bird/layouts/widgets/game_button.dart';
 import 'package:flutter/material.dart';
-import '../Database/database.dart';
-import 'constant.dart';
-
-Text myText(String txt, Color? color, double size) {
-  return Text(
-    txt,
-    style: TextStyle(fontSize: size, fontFamily: "Magic4", color: color),
-  );
-}
-
-ElevatedButton gameButton(VoidCallback? onPress, String txt, Color color) {
-  return ElevatedButton(
-    onPressed: onPress,
-    style: ElevatedButton.styleFrom(primary: color),
-    child: myText(txt, Colors.white, 20),
-  );
-}
+import 'package:audioplayers/audioplayers.dart';
+import 'package:flappy_bird/database/database.dart';
 
 BoxDecoration frame() {
   return BoxDecoration(
@@ -44,51 +30,62 @@ AlertDialog dialog(BuildContext context) {
   return AlertDialog(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
     actionsPadding: const EdgeInsets.only(right: 8, bottom: 8),
-    title: myText("About Flappy Bird", Colors.black, 22),
+    title: const Text(
+      "About Flappy Bird",
+      style: TextStyle(
+        color: Colors.black,
+        fontSize: 22,
+      ),
+    ),
     content: const Text(
       Str.about,
       style: TextStyle(fontFamily: "Magic4"),
     ),
     actions: [
-      gameButton(() {
-        Navigator.pop(context);
-      }, "Okay", Colors.deepOrange),
+      GameButton(
+        onPress: () {
+          Navigator.pop(context);
+        },
+        text: "Okay",
+        color: Colors.deepOrange,
+      ),
     ],
   );
 }
 
 void init() {
-  if (read("score") != null) {
-    topScore = read("score");
+  if (Database.read(BoxId.score) != null) {
+    GameState.topScore = Database.read(BoxId.score);
   } else {
-    write("score", topScore);
+    Database.write(BoxId.score, GameState.topScore);
   }
-  if (read("background") != null) {
-    Str.image = read("background");
+  if (Database.read(BoxId.background) != null) {
+    Str.image = Database.read(BoxId.background);
   } else {
-    write("background", Str.image);
+    Database.write(BoxId.background, Str.image);
   }
-  if (read("bird") != null) {
-    Str.bird = read("bird");
+  if (Database.read(BoxId.bird) != null) {
+    Str.bird = Database.read(BoxId.bird);
   } else {
-    write("bird", Str.bird);
+    Database.write(BoxId.bird, Str.bird);
   }
-  if (read("level") != null) {
-    barrierMovement = read("level");
+  if (Database.read(BoxId.level) != null) {
+    GameState.barrierMovement = Database.read(BoxId.level);
   } else {
-    write("level", barrierMovement);
+    Database.write(BoxId.level, GameState.barrierMovement);
   }
-  if (read("audio") != null) {
-    play = read("audio");
+  if (Database.read(BoxId.audio) != null) {
+    GameState.play = Database.read(BoxId.audio);
   } else {
-    write("audio", play);
+    Database.write(BoxId.audio, GameState.play);
   }
-  if (play) {
-    player.play(AssetSource("audio/Tintin.mp3"));
+  if (GameState.play) {
+    GameState.player.play(AssetSource("audio/Tintin.mp3"));
   } else {
-    player.stop();
+    GameState.player.stop();
   }
-  player.setReleaseMode(ReleaseMode.loop);
+
+  GameState.player.setReleaseMode(ReleaseMode.loop);
 }
 
 void navigate(context, navigate) {

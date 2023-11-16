@@ -1,8 +1,6 @@
-import 'package:flappy_bird/Database/database.dart';
-import 'package:flappy_bird/Global/constant.dart';
+import 'package:flappy_bird/database/database.dart';
+import 'package:flappy_bird/global/constant.dart';
 import 'package:flutter/material.dart';
-
-import '../../Global/functions.dart';
 
 class BirdSettings extends StatelessWidget {
   const BirdSettings({Key? key}) : super(key: key);
@@ -13,10 +11,12 @@ class BirdSettings extends StatelessWidget {
       children: [
         Container(
           margin: const EdgeInsets.symmetric(vertical: 10),
-          child: myText(
+          child: const Text(
             "Characters",
-            Colors.black,
-            20,
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+            ),
           ),
         ),
         Row(
@@ -25,7 +25,7 @@ class BirdSettings extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 Str.bird = "assets/pics/bird.png";
-                write("bird", Str.bird);
+                Database.write(BoxId.bird, Str.bird);
               },
               child: SizedBox(
                 width: 75,
@@ -39,7 +39,7 @@ class BirdSettings extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 Str.bird = "assets/pics/blue.png";
-                write("bird", Str.bird);
+                Database.write(BoxId.bird, Str.bird);
               },
               child: SizedBox(
                 width: 75,
@@ -53,7 +53,7 @@ class BirdSettings extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 Str.bird = "assets/pics/green.png";
-                write("bird", Str.bird);
+                Database.write(BoxId.bird, Str.bird);
               },
               child: SizedBox(
                 width: 75,

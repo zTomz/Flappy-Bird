@@ -1,20 +1,20 @@
-import 'package:flappy_bird/Global/constant.dart';
-import 'package:flappy_bird/Global/functions.dart';
-import 'package:flappy_bird/Layouts/Pages/page_start_screen.dart';
-import 'package:flappy_bird/Layouts/Widgets/widget_bird_settings.dart';
-import 'package:flappy_bird/Layouts/Widgets/widget_difficulty_settings.dart';
-import 'package:flappy_bird/Layouts/Widgets/widget_music_settings.dart';
-import 'package:flappy_bird/Layouts/Widgets/widget_themes_settings.dart';
+import 'package:flappy_bird/global/constant.dart';
+import 'package:flappy_bird/global/functions.dart';
+import 'package:flappy_bird/layouts/pages/start_screen_page.dart';
+import 'package:flappy_bird/layouts/widgets/widget_bird_settings.dart';
+import 'package:flappy_bird/layouts/widgets/widget_difficulty_settings.dart';
+import 'package:flappy_bird/layouts/widgets/widget_music_settings.dart';
+import 'package:flappy_bird/layouts/widgets/widget_themes_settings.dart';
 import 'package:flutter/material.dart';
 
-class Settings extends StatefulWidget {
-  const Settings({Key? key}) : super(key: key);
+class SettingsPage extends StatefulWidget {
+  const SettingsPage({Key? key}) : super(key: key);
 
   @override
-  State<Settings> createState() => _SettingsState();
+  State<SettingsPage> createState() => _SettingsPageState();
 }
 
-class _SettingsState extends State<Settings> {
+class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -26,8 +26,11 @@ class _SettingsState extends State<Settings> {
         child: Column(
           children: [
             Container(
-              margin:
-                  EdgeInsets.only(top: size.height * 0.08, left: 8, bottom: 10),
+              margin: EdgeInsets.only(
+                top: size.height * 0.08,
+                left: 8,
+                bottom: 10,
+              ),
               alignment: const Alignment(-1, 0),
               child: IconButton(
                 onPressed: () {
@@ -48,14 +51,20 @@ class _SettingsState extends State<Settings> {
               decoration: frame(),
               child: Column(
                 children: [
-                  myText("Setting", Colors.pinkAccent, 35),
+                  const Text(
+                    "Settings",
+                    style: TextStyle(
+                      color: Colors.pinkAccent,
+                      fontSize: 35,
+                    ),
+                  ),
                   const BirdSettings(),
                   const ThemesSettings(),
                   const MusicSettings(),
                   const DifficultySettings(),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.cyan.shade300,
+                      backgroundColor: Colors.cyan.shade300,
                     ),
                     onPressed: () {
                       Navigator.push(
@@ -65,7 +74,13 @@ class _SettingsState extends State<Settings> {
                         ),
                       );
                     },
-                    child: myText("Apply", Colors.white, 35),
+                    child: const Text(
+                      "Apply",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 35,
+                      ),
+                    ),
                   ),
                 ],
               ),

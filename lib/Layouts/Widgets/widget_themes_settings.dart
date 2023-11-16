@@ -1,5 +1,5 @@
-import 'package:flappy_bird/Database/database.dart';
-import 'package:flappy_bird/Global/constant.dart';
+import 'package:flappy_bird/global/constant.dart';
+import 'package:flappy_bird/database/database.dart';
 import 'package:flutter/material.dart';
 import '../../Global/functions.dart';
 
@@ -26,36 +26,38 @@ class _ThemesSettingsState extends State<ThemesSettings> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      Str.image = "0";
-                      write("background", Str.image);
-                      background(Str.image);
-                    });
-                  },
-                  child: Image.asset(
-                    "assets/pics/0.png",
-                    width: 73,
-                    height: 70,
-                  )),
+                onTap: () {
+                  setState(() {
+                    Str.image = "0";
+                    Database.write(BoxId.background, Str.image);
+                    background(Str.image);
+                  });
+                },
+                child: Image.asset(
+                  "assets/pics/0.png",
+                  width: 73,
+                  height: 70,
+                ),
+              ),
               GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      Str.image = "1";
-                      write("background", Str.image);
-                      background(Str.image);
-                    });
-                  },
-                  child: Image.asset(
-                    "assets/pics/1.png",
-                    width: 73,
-                    height: 70,
-                  )),
+                onTap: () {
+                  setState(() {
+                    Str.image = "1";
+                    Database.write(BoxId.background, Str.image);
+                    background(Str.image);
+                  });
+                },
+                child: Image.asset(
+                  "assets/pics/1.png",
+                  width: 73,
+                  height: 70,
+                ),
+              ),
               GestureDetector(
                 onTap: () {
                   setState(() {
                     Str.image = "2";
-                    write("background", Str.image);
+                    Database.write(BoxId.background, Str.image);
                     background(Str.image);
                   });
                 },

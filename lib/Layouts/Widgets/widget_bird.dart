@@ -3,21 +3,27 @@ import 'package:flutter/material.dart';
 
 class Bird extends StatelessWidget {
   final double yAxis;
-  final double birdWidth;
-  final double birdHeight;
 
-  const Bird(this.yAxis, this.birdWidth, this.birdHeight, {super.key});
+  const Bird({
+    required this.yAxis,
+    super.key,
+  });
+
+  static const double birdSize = 0.183;
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return AnimatedContainer(
-      alignment: Alignment(0, (2 * yAxis + birdHeight) / (2 - birdHeight)),
+      alignment: Alignment(
+        0,
+        (2 * yAxis + birdSize) / (2 - birdSize),
+      ),
       duration: const Duration(milliseconds: 0),
       child: Image.asset(
         Str.bird,
-        width: size.width * birdWidth,
-        height: size.height * birdHeight,
+        width: size.width * birdSize,
+        height: size.height * birdSize,
         fit: BoxFit.cover,
       ),
     );

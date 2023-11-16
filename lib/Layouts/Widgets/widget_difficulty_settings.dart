@@ -1,10 +1,7 @@
-// ignore_for_file: prefer_const_constructors
-
-import 'package:flappy_bird/Database/database.dart';
-import 'package:flappy_bird/Global/functions.dart';
 import 'package:flutter/material.dart';
-
-import '../../Global/constant.dart';
+import 'package:flappy_bird/database/database.dart';
+import 'package:flappy_bird/global/constant.dart';
+import 'package:flappy_bird/layouts/widgets/game_button.dart';
 
 class DifficultySettings extends StatelessWidget {
   const DifficultySettings({Key? key}) : super(key: key);
@@ -17,23 +14,42 @@ class DifficultySettings extends StatelessWidget {
       child: Column(
         children: [
           Container(
-              margin: EdgeInsets.symmetric(vertical: 10),
-              child: myText("Difficulty", Colors.black, 20)),
+            margin: const EdgeInsets.symmetric(vertical: 10),
+            child: const Text(
+              "Difficulty",
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+              ),
+            ),
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              gameButton(() {
-                barrierMovement = 0.05;
-                write("level", barrierMovement);
-              }, "Easy", Colors.green.shade300),
-              gameButton(() {
-                barrierMovement = 0.08;
-                write("level", barrierMovement);
-              }, "Medium", Colors.yellow.shade700),
-              gameButton(() {
-                barrierMovement = 0.1;
-                write("level", barrierMovement);
-              }, "Hard", Colors.red.shade300),
+              GameButton(
+                onPress: () {
+                  GameState.barrierMovement = 0.05;
+                  Database.write(BoxId.level, GameState.barrierMovement);
+                },
+                text: "Easy",
+                color: Colors.green.shade300,
+              ),
+              GameButton(
+                onPress: () {
+                  GameState.barrierMovement = 0.08;
+                  Database.write(BoxId.level, GameState.barrierMovement);
+                },
+                text: "Medium",
+                color: Colors.yellow.shade700,
+              ),
+              GameButton(
+                onPress: () {
+                  GameState.barrierMovement = 0.1;
+                  Database.write(BoxId.level, GameState.barrierMovement);
+                },
+                text: "Hard",
+                color: Colors.red.shade300,
+              ),
             ],
           ),
         ],

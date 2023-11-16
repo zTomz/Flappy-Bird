@@ -1,12 +1,16 @@
-import 'package:flappy_bird/Global/constant.dart';
-import 'package:flappy_bird/routes/app_routes.dart';
+import 'package:flappy_bird/database/database.dart';
+import 'package:flappy_bird/layouts/pages/start_screen_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'layouts/Pages/page_start_screen.dart';
 
 void main() async {
-  await Hive.initFlutter();
+  await Database.init();
+
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
   runApp(const MainApp());
 }
 
@@ -15,15 +19,12 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
     return MaterialApp(
-      home: const StartScreen(),
+      theme: ThemeData(
+        fontFamily: "Magic4",
+      ),
       debugShowCheckedModeBanner: false,
-      initialRoute: Str.home,
-      onGenerateRoute: AppRoute().generateRoute,
+      home: const StartScreen(),
     );
   }
 }

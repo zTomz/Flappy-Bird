@@ -1,18 +1,17 @@
-import 'package:flappy_bird/Global/functions.dart';
 import 'package:flutter/material.dart';
 
-class Button extends StatelessWidget {
+class GradientButton extends StatelessWidget {
   final Icon? icon;
   final double width;
   final double height;
-  final String page;
-  final String buttonType;
+  final VoidCallback? onTap;
+  final ButtonType buttonType;
 
-  const Button({
+  const GradientButton({
+    this.icon,
+    this.onTap,
     required this.width,
     required this.height,
-    this.icon,
-    required this.page,
     required this.buttonType,
     Key? key,
   }) : super(key: key);
@@ -20,6 +19,7 @@ class Button extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: onTap,
       child: Container(
         width: width,
         height: height,
@@ -28,17 +28,30 @@ class Button extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
           border: Border.all(color: Colors.black),
           gradient: LinearGradient(
-            colors: [Colors.white, Colors.grey.shade500],
+            colors: [
+              Colors.white,
+              Colors.grey.shade500,
+            ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
         ),
         alignment: Alignment.center,
-        child: buttonType == "text" ? myText("Play", Colors.green, 35) : icon,
+        child: buttonType == ButtonType.text
+            ? const Text(
+                "Play",
+                style: TextStyle(
+                  color: Colors.green,
+                  fontSize: 35,
+                ),
+              )
+            : icon,
       ),
-      onTap: () {
-        navigate(context, page);
-      },
     );
   }
+}
+
+enum ButtonType {
+  text,
+  icon,
 }
