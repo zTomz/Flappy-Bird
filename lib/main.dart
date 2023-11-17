@@ -1,7 +1,7 @@
-import 'package:flappy_bird/database/database.dart';
-import 'package:flappy_bird/layouts/pages/start_screen_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flappy_bird/database/database.dart';
+import 'package:flappy_bird/layouts/pages/start_screen_page.dart';
 
 void main() async {
   await Database.init();
@@ -22,6 +22,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         fontFamily: "Magic4",
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
       ),
       debugShowCheckedModeBanner: false,
       home: const StartScreen(),

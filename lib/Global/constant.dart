@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:audioplayers/audioplayers.dart';
 
 class GameState {
@@ -34,7 +32,13 @@ class GameState {
 
   /// audio
   static final player = AudioPlayer();
-  static bool play = true;
+  static bool playMusic = false;
+
+  /// Bird image
+  static String bird = "assets/images/bird.png";
+
+  /// Background image
+  static String background = "background-0";
 }
 
 class Str {
@@ -45,7 +49,4 @@ class Str {
   static const String about = "The game is a side-scroller where the player"
       " controls a bird, attempting to fly between "
       " columns of green pipes without hitting them";
-
-  static String image = "0";
-  static String bird = "assets/pics/bird.png";
 }

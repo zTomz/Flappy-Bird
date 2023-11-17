@@ -1,5 +1,5 @@
-import 'package:flappy_bird/Global/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:flappy_bird/global/constant.dart';
 
 class Bird extends StatelessWidget {
   final double yAxis;
@@ -14,17 +14,21 @@ class Bird extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return AnimatedContainer(
-      alignment: Alignment(
-        0,
-        (2 * yAxis + birdSize) / (2 - birdSize),
-      ),
-      duration: const Duration(milliseconds: 0),
-      child: Image.asset(
-        Str.bird,
-        width: size.width * birdSize,
-        height: size.height * birdSize,
-        fit: BoxFit.cover,
+
+    return Hero(
+      tag: 'bird',
+      child: AnimatedAlign(
+        alignment: Alignment(
+          0,
+          (2 * yAxis + birdSize) / (2 - birdSize),
+        ),
+        duration: const Duration(milliseconds: 0),
+        child: Image.asset(
+          GameState.bird,
+          width: size.width * birdSize,
+          height: size.height * birdSize,
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }

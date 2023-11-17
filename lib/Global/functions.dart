@@ -19,10 +19,12 @@ BoxDecoration frame() {
   );
 }
 
-BoxDecoration background(String y) {
+BoxDecoration background(String imagePath) {
   return BoxDecoration(
     image: DecorationImage(
-        image: AssetImage("assets/pics/$y.png"), fit: BoxFit.fill),
+      image: AssetImage(imagePath),
+      fit: BoxFit.fill,
+    ),
   );
 }
 
@@ -60,14 +62,14 @@ void init() {
     Database.write(BoxId.score, GameState.topScore);
   }
   if (Database.read(BoxId.background) != null) {
-    Str.image = Database.read(BoxId.background);
+    GameState.background = Database.read(BoxId.background);
   } else {
-    Database.write(BoxId.background, Str.image);
+    Database.write(BoxId.background, GameState.background);
   }
   if (Database.read(BoxId.bird) != null) {
-    Str.bird = Database.read(BoxId.bird);
+    GameState.bird = Database.read(BoxId.bird);
   } else {
-    Database.write(BoxId.bird, Str.bird);
+    Database.write(BoxId.bird, GameState.bird);
   }
   if (Database.read(BoxId.level) != null) {
     GameState.barrierMovement = Database.read(BoxId.level);
@@ -75,11 +77,11 @@ void init() {
     Database.write(BoxId.level, GameState.barrierMovement);
   }
   if (Database.read(BoxId.audio) != null) {
-    GameState.play = Database.read(BoxId.audio);
+    GameState.playMusic = Database.read(BoxId.audio);
   } else {
-    Database.write(BoxId.audio, GameState.play);
+    Database.write(BoxId.audio, GameState.playMusic);
   }
-  if (GameState.play) {
+  if (GameState.playMusic) {
     GameState.player.play(AssetSource("audio/Tintin.mp3"));
   } else {
     GameState.player.stop();

@@ -29,7 +29,7 @@ class _GamePageState extends State<GamePage> {
             Expanded(
               flex: 3,
               child: Container(
-                decoration: background(Str.image),
+                decoration: background(GameState.background),
                 child: Stack(
                   children: [
                     Bird(yAxis: GameState.yAxis),
@@ -214,7 +214,7 @@ class _GamePageState extends State<GamePage> {
           ),
           actionsPadding: const EdgeInsets.only(right: 8, bottom: 8),
           content: Container(
-            child: Lottie.asset("assets/pics/loss.json", fit: BoxFit.cover),
+            child: Lottie.asset("assets/images/loss.json", fit: BoxFit.cover),
           ),
           actions: [
             GameButton(

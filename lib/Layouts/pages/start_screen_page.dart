@@ -1,6 +1,6 @@
-import 'package:flappy_bird/Layouts/Pages/page_game.dart';
 import 'package:flappy_bird/global/constant.dart';
 import 'package:flappy_bird/global/functions.dart';
+import 'package:flappy_bird/layouts/pages/game_page.dart';
 import 'package:flappy_bird/layouts/pages/settigns_page.dart';
 import 'package:flappy_bird/layouts/widgets/widget_bird.dart';
 import 'package:flappy_bird/layouts/widgets/gradient_button.dart';
@@ -24,6 +24,7 @@ class _StartScreenState extends State<StartScreen> {
     super.initState();
   }
 
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -32,7 +33,7 @@ class _StartScreenState extends State<StartScreen> {
       body: Container(
         width: size.width,
         height: size.height,
-        decoration: background(Str.image),
+        decoration: background(GameState.background),
         child: Column(
           children: [
             // Flappy bird text
